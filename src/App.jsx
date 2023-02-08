@@ -60,7 +60,6 @@ function App() {
         <select
           name="category"
           id="category"
-          value="All"
           onChange={(e) => handleCategory(e.target.value)}
           className="bg-[#cccdde] outline-0 py-2 px-3 rounded-lg"
         >
