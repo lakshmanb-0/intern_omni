@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 // react icons
 import { contextApi } from "../state/context";
@@ -9,7 +9,7 @@ const Task = ({ tasks }) => {
   const { dispatch } = useContext(contextApi);
 
   return (
-    <section className="flex justify-between items-center gap-4 bg-white rounded-lg p-3 my-6">
+    <section className="flex justify-between items-center gap-4 bg-white rounded-lg py-3 px-4 my-6">
       <h1
         className={`${
           tasks.category === "Completed" ? "line-through text-black/50" : ""

@@ -8,29 +8,32 @@ function App() {
     state: { tasks },
     dispatch,
   } = useContext(contextApi);
-  const [category, setCategory] = useState([]);
+  const [category_data, setCategory_data] = useState([]);
+  const [name, setName] = useState("All");
 
   // set data to tasks when state changes
   useEffect(() => {
-    setCategory(tasks);
+    setCategory_data(tasks);
+    setName("All");
   }, [tasks]);
 
   // handle submit button
   const handleData = (e) => {
     e.preventDefault();
-    input != "" && dispatch({ type: "Add_Task", payload: input });
+    input !== "" && dispatch({ type: "Add_Task", payload: input });
     setInput("");
   };
 
   // data change according to category
   const handleCategory = (cat) => {
-    setCategory([]);
-    cat === "All" && setCategory(tasks);
+    setCategory_data([]);
+    cat === "All" && setCategory_data(tasks);
     if (cat === "Incomplete" || cat === "Completed") {
       tasks.map((item) => {
-        item.category === cat && setCategory((prev) => [...prev, item]);
+        item.category === cat && setCategory_data((prev) => [...prev, item]);
       });
     }
+    setName(cat);
   };
 
   return (
@@ -60,6 +63,7 @@ function App() {
         <select
           name="category"
           id="category"
+          value={name}
           onChange={(e) => handleCategory(e.target.value)}
           className="bg-[#cccdde] outline-0 py-2 px-3 rounded-lg"
         >
@@ -71,7 +75,7 @@ function App() {
 
       {/* task section  */}
       <section className="w-[40rem] bg-[#ecedf6] rounded-xl px-6 my-3">
-        {category.map((item, index) => (
+        {category_data.map((item, index) => (
           <Task key={index} tasks={item} />
         ))}
       </section>
