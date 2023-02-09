@@ -14,7 +14,7 @@ function App() {
   // set data to tasks when state changes
   useEffect(() => {
     setCategory_data(tasks);
-    setName("All");
+    handleCategory(name);
   }, [tasks]);
 
   // handle submit button
